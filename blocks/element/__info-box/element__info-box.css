@@ -1,0 +1,11 @@
+.element__info-box {
+    width: 246px;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 25px;
+    box-sizing: border-box;
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+    color: #000000;
+}

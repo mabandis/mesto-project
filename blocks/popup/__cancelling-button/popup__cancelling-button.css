@@ -1,0 +1,13 @@
+.popup__cancelling-button {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0, 0, 0, 0);
+    background-size: 32px;
+    background-image: url(../../../images/bttn_cross_disabled.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+}

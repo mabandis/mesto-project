@@ -1,0 +1,12 @@
+.popup__box {
+    width: 430px;
+    min-height: 330px;
+    padding: 0;
+    margin: auto;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
