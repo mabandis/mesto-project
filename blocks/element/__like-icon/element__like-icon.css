@@ -1,4 +1,5 @@
 .element__like-icon {
+    cursor: pointer;
     width: 22px;
     height: 19px;
     border: none;
@@ -6,6 +7,10 @@
     background-image: url(../../../images/bttn_heart_disabled.svg);
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    
+    box-sizing: border-box;   
+}
+
+.element__like-icon:hover {
+    opacity: 0.5;
+    transition: opacity 0.5s;
 }

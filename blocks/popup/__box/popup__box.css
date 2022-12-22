@@ -4,9 +4,16 @@
     padding: 0;
     margin: auto;
     box-sizing: border-box;
-    background: #FFFFFF;
+    background: #fff;
     border-radius: 10px;
     position: relative;
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+    .popup__box {
+        width: 282px;
+        min-height: 322px;
+    }
 }
