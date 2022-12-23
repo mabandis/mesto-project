@@ -13,6 +13,7 @@
 
 @media screen and (max-width: 1024px) {
     .elements {
+        padding-top: 36px;
         width: max-content;
         grid-template-columns: 282px;
         grid-template-rows: repeat(6, 361px);

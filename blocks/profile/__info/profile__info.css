@@ -4,7 +4,6 @@
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(2, auto);
-    align-items: center;
     align-items: baseline;
     column-gap: 18px;
     row-gap: 16px;
@@ -12,7 +11,9 @@
 
 @media screen and (max-width: 1024px) {
     .profile__info {
-        column-gap: 10px;
-        row-gap: 14px;
+        row-gap: 7px;
+        width: 282px;
+        grid-template-columns: 1fr;
+        position: relative;
     }
 }
