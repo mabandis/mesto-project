@@ -22,65 +22,62 @@
             <button class="profile__add-button" type="button"></button>
         </section>
         <section class="elements">
-            <article class="element">
-                <img class="element__image" src="./images/Karachayevsk.jpg" alt="Здесь должно быть изображение">
-                <div class="element__info-box">
-                    <h2 class="element__title">Карачаевск</h2>
-                    <button class="element__like-icon" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/Mount_Elbrus.jpg" alt="Здесь должно быть изображение">
-                <div class="element__info-box">
-                    <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__like-icon" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/Dombay.jpg" alt="Здесь должно быть изображение">
-                <div class="element__info-box">
-                    <h2 class="element__title">Домбай</h2>
-                    <button class="element__like-icon" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/Mount_Elbrus.jpg" alt="Здесь должно быть изображение">
-                <div class="element__info-box">
-                    <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__like-icon" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/Dombay.jpg" alt="Здесь должно быть изображение">
-                <div class="element__info-box">
-                    <h2 class="element__title">Домбай</h2>
-                    <button class="element__like-icon" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/Karachayevsk.jpg" alt="Здесь должно быть изображение">
-                <div class="element__info-box">
-                    <h2 class="element__title">Карачаевск</h2>
-                    <button class="element__like-icon" type="button"></button>
-                </div>
-            </article>
+            <template id="element-template">
+                <article class="element">
+                    <button class="element__delete-button" type="button"></button>
+                    <img class="element__image" src="#" alt="">
+                    <div class="element__info-box">
+                        <h2 class="element__title"></h2>
+                        <button class="element__like-icon" type="button"></button>
+                    </div>
+                </article>
+            </template>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
-        <div class="popup__box">
+    <div class="popup" id="edit_popup">
+        <div class="popup__box popup__size">
             <button class="popup__cancelling-button" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="edit-form">
                 <fieldset class="popup__fields">
-                    <input class="popup__field" name="name-field" type="text" placeholder="Жак-Ив Кусто">
-                    <input class="popup__field" name="text-field" type="text" placeholder="Исследователь океана">
+                    <label class="popup__name-field" for="profile-name-field">
+                        <input class="popup__field" id="profile-name-field" name="name-field" type="text" placeholder="Жак-Ив Кусто">
+                    </label>
+                    <label for="profile-text-field">
+                        <input class="popup__field" id="profile-text-field" name="text-field" type="text" placeholder="Исследователь океана">
+                    </label>
                 </fieldset>
-                <button class="popup__submit-button" type="submit">Сохранить</button>
+                <button class="popup__submit-profile-button" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
+    <div class="popup" id="add_popup">
+        <div class="popup__box popup__size">
+            <button class="popup__cancelling-button" type="button"></button>
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form" name="edit-form">
+                <fieldset class="popup__fields">
+                    <label class="popup__name-field" for="card-name-field">
+                        <input class="popup__field" id="card-name-field" name="name-field" type="text" placeholder="Название">
+                    </label>
+                    <label for="card-link-field">
+                        <input class="popup__field" id="card-link-field" name="text-field" type="text" placeholder="Ссылка на картинку">
+                    </label>
+                </fieldset>
+                <button class="popup__submit-card-button" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup" id="img_popup">
+        <div class="popup__box">
+            <img class="element__popup-image" src="#" alt="">
+            <button class="popup__cancelling-button" type="button"></button>
+            <p class="popup__img-title"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
