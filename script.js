@@ -7,9 +7,9 @@ const addPopup = document.querySelector("#add_popup");
 const imgPopup = document.querySelector("#img_popup");
 
 
-const closeProfileButton = document.querySelectorAll(".popup__cancelling-button");
+const closeProfileButtons = document.querySelectorAll(".popup__cancelling-button");
 
-closeProfileButton.forEach ( button => {
+closeProfileButtons.forEach ( button => {
     button.addEventListener ("click", (evt) => {
         closePopup(evt.target.closest('.popup'))
     })
@@ -24,8 +24,15 @@ function closePopup (popup) {
     popup.classList.remove("popup_opened")
 };
 
+const profileName = document.querySelector(".profile__name");
+const profileText = document.querySelector(".profile__text");
+const profileInputName = document.querySelector('input[id="profile-name-field"]');
+const profileInputText = document.querySelector('input[id="profile-text-field"]');
+
 editProfileButton.addEventListener("click", () => {
     openPopup(editPopup)
+    profileText.textContent = profileInputText.value;
+    profileName.textContent = profileInputName.value;
 });
 
 addProfileButton.addEventListener("click", () => {
@@ -93,12 +100,13 @@ function createCard (name, link) {
     evt.target.closest('.element').remove()
   })
 
+  const popupImg = document.querySelector(".element__popup-image")
+  const popupImgTitle = document.querySelector(".popup__img-title");
   copyImg.addEventListener("click", (evt) => {
-    let popupImg = document.querySelector(".element__popup-image")
     openPopup(imgPopup)
     popupImg.setAttribute("src", link);
     popupImg.setAttribute("alt", name);
-    document.querySelector(".popup__img-title").textContent = name;
+    popupImgTitle.textContent = name;
   })
 
   return copyCard
@@ -112,31 +120,25 @@ function startRendering() {
 }
 startRendering()
 
-const addUserCard = document.querySelector(".popup__submit-card-button");
-const cardInputName = document.querySelector('input[id="card-name-field"]');
-const cardInputLink = document.querySelector('input[id="card-link-field"]');
+const userEditForm = document.querySelector("#edit-form");
 
-addUserCard.addEventListener("click", (evt) => {
+userEditForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  templateCardSection.prepend(createCard (cardInputName.value, cardInputLink.value))
   closePopup(evt.target.closest('.popup'))
-})
-
-let profileName = document.querySelector(".profile__name");
-let profileText = document.querySelector(".profile__text");
-const addUserProfile = document.querySelector(".popup__submit-profile-button");
-const profileInputName = document.querySelector('input[id="profile-name-field"]');
-const profileInputText = document.querySelector('input[id="profile-text-field"]');
-
-addUserProfile.addEventListener("click", (evt) => {
-  evt.preventDefault();
-
-  closePopup(evt.target.closest('.popup'))
-
   profileText.textContent = profileInputText.value;
   profileName.textContent = profileInputName.value;
 })
 
+const cardInputName = document.querySelector('input[id="card-name-field"]');
+const cardInputLink = document.querySelector('input[id="card-link-field"]');
+const userAddForm = document.querySelector("#add-form");
+
+userAddForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  templateCardSection.prepend(createCard (cardInputName.value, cardInputLink.value))
+  closePopup(evt.target.closest('.popup'))
+  userAddForm.reset();
+})
 
 
 
