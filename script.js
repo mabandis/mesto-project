@@ -1,12 +1,10 @@
 const editProfileButton = document.querySelector(".profile__edit-button");
 const addProfileButton = document.querySelector(".profile__add-button");
-
-
 const editPopup = document.querySelector("#edit_popup");
 const addPopup = document.querySelector("#add_popup");
 const imgPopup = document.querySelector("#img_popup");
-
-
+const popupImg = document.querySelector(".element__popup-image")
+const popupImgTitle = document.querySelector(".popup__img-title");
 const closeProfileButtons = document.querySelectorAll(".popup__cancelling-button");
 
 closeProfileButtons.forEach ( button => {
@@ -14,7 +12,6 @@ closeProfileButtons.forEach ( button => {
         closePopup(evt.target.closest('.popup'))
     })
 })
-
 
 function openPopup (popup) {
     popup.classList.add("popup_opened")
@@ -31,15 +28,13 @@ const profileInputText = document.querySelector('input[id="profile-text-field"]'
 
 editProfileButton.addEventListener("click", () => {
     openPopup(editPopup)
-    profileText.textContent = profileInputText.value;
-    profileName.textContent = profileInputName.value;
+    profileInputText.value = profileText.textContent;
+    profileInputName.value = profileName.textContent;
 });
 
 addProfileButton.addEventListener("click", () => {
     openPopup(addPopup)
 });
-
-
 
 const initialCards = [
     {
@@ -100,8 +95,6 @@ function createCard (name, link) {
     evt.target.closest('.element').remove()
   })
 
-  const popupImg = document.querySelector(".element__popup-image")
-  const popupImgTitle = document.querySelector(".popup__img-title");
   copyImg.addEventListener("click", (evt) => {
     openPopup(imgPopup)
     popupImg.setAttribute("src", link);
@@ -111,7 +104,6 @@ function createCard (name, link) {
 
   return copyCard
 }
-
 
 function startRendering() {
   for (let item of initialCards) {
