@@ -1,40 +1,5 @@
-const editProfileButton = document.querySelector(".profile__edit-button");
-const addProfileButton = document.querySelector(".profile__add-button");
-const editPopup = document.querySelector("#edit_popup");
-const addPopup = document.querySelector("#add_popup");
-const imgPopup = document.querySelector("#img_popup");
-const popupImg = document.querySelector(".element__popup-image")
-const popupImgTitle = document.querySelector(".popup__img-title");
-const closeProfileButtons = document.querySelectorAll(".popup__cancelling-button");
+import {openPopup, imgPopup, popupImg, popupImgTitle} from "../components/modal";
 
-closeProfileButtons.forEach ( button => {
-    button.addEventListener ("click", (evt) => {
-        closePopup(evt.target.closest('.popup'))
-    })
-})
-
-function openPopup (popup) {
-    popup.classList.add("popup_opened")
-};
-
-function closePopup (popup) {
-    popup.classList.remove("popup_opened")
-};
-
-const profileName = document.querySelector(".profile__name");
-const profileText = document.querySelector(".profile__text");
-const profileInputName = document.querySelector('input[id="profile-name-field"]');
-const profileInputText = document.querySelector('input[id="profile-text-field"]');
-
-editProfileButton.addEventListener("click", () => {
-    openPopup(editPopup)
-    profileInputText.value = profileText.textContent;
-    profileInputName.value = profileName.textContent;
-});
-
-addProfileButton.addEventListener("click", () => {
-    openPopup(addPopup)
-});
 
 const initialCards = [
     {
@@ -63,6 +28,7 @@ const initialCards = [
     }
   ];
 
+
 const templateCardContainer = document.querySelector("#element-template").content;
 const templateCardSection = document.querySelector(".elements");
 
@@ -82,7 +48,6 @@ function createCard (name, link) {
       // active 
       list.remove("element__like-icon-active")
       list.add("element__like-icon")
-
    } else { 
       // inactive 
       list.add("element__like-icon-active")
@@ -105,6 +70,7 @@ function createCard (name, link) {
   return copyCard
 }
 
+
 function startRendering() {
   for (let item of initialCards) {
     templateCardSection.prepend(createCard (item.name, item.link))
@@ -112,25 +78,9 @@ function startRendering() {
 }
 startRendering()
 
-const userEditForm = document.querySelector("#edit-form");
 
-userEditForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  closePopup(evt.target.closest('.popup'))
-  profileText.textContent = profileInputText.value;
-  profileName.textContent = profileInputName.value;
-})
 
-const cardInputName = document.querySelector('input[id="card-name-field"]');
-const cardInputLink = document.querySelector('input[id="card-link-field"]');
-const userAddForm = document.querySelector("#add-form");
-
-userAddForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  templateCardSection.prepend(createCard (cardInputName.value, cardInputLink.value))
-  closePopup(evt.target.closest('.popup'))
-  userAddForm.reset();
-})
+export {templateCardContainer, templateCardSection, startRendering};
 
 
 

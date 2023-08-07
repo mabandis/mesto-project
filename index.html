@@ -2,18 +2,18 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./pages/index.css">
+    <link rel="stylesheet" href="./src/pages/index.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
 </head>
 <body class="page">
     <header class="header">
-        <img class="header__logo" alt="Здесь должно быть изображение" src="./images/header_logo.svg">
+        <img class="header__logo" alt="Здесь должно быть изображение" src="./src/images/header_logo.svg">
     </header>
     <main>
         <section class="profile">
-            <img class="profile__avatar" src="./images/Jacques-Yves_Cousteau.jpg" alt="Здесь должно быть изображение">
+            <img class="profile__avatar" src="./src/images/Jacques-Yves_Cousteau.jpg" alt="Здесь должно быть изображение">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button class="profile__edit-button" type="button"></button>
@@ -41,16 +41,19 @@
         <div class="popup__box popup__size">
             <button class="popup__cancelling-button" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" id="edit-form" name="edit-form">
+            <form class="popup__form" id="edit-form" name="edit-form" novalidate>
                 <fieldset class="popup__fields">
                     <label class="popup__name-field" for="profile-name-field">
-                        <input class="popup__field" id="profile-name-field" name="name-field" type="text" placeholder="Жак-Ив Кусто">
+                        <input class="popup__field" id="profile-name-field" name="name-field" type="text" placeholder="Жак-Ив Кусто" minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-Я \-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+                        <span class="profile-name-field-error popup__field-error"></span>
                     </label>
                     <label for="profile-text-field">
-                        <input class="popup__field" id="profile-text-field" name="text-field" type="text" placeholder="Исследователь океана">
+                        <input class="popup__field" id="profile-text-field" name="text-field" type="text" placeholder="Исследователь океана" minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-Я \-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+                        <span class="profile-text-field-error popup__field-error"></span>
                     </label>
+                    <button class="popup__submit popup__profile-button" type="submit">Сохранить</button>
                 </fieldset>
-                <button class="popup__submit-profile-button" type="submit">Сохранить</button>
+                
             </form>
         </div>
     </div>
@@ -58,16 +61,19 @@
         <div class="popup__box popup__size">
             <button class="popup__cancelling-button" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form class="popup__form" id="add-form" name="add-form">
+            <form class="popup__form" id="add-form" name="add-form" novalidate>
                 <fieldset class="popup__fields">
                     <label class="popup__name-field" for="card-name-field">
-                        <input class="popup__field" id="card-name-field" name="name-field" type="text" placeholder="Название">
+                        <input class="popup__field" id="card-name-field" name="name-field" type="text" placeholder="Название" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-Я \-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+                        <span class="card-name-field-error popup__field-error"></span>
                     </label>
                     <label for="card-link-field">
-                        <input class="popup__field" id="card-link-field" name="text-field" type="text" placeholder="Ссылка на картинку">
+                        <input class="popup__field" id="card-link-field" name="link-field" type="url" placeholder="Ссылка на картинку" required>
+                        <span class="card-link-field-error popup__field-error"></span>
                     </label>
+                    <button class="popup__submit popup__card-button" type="submit">Сохранить</button>
                 </fieldset>
-                <button class="popup__submit-card-button" type="submit">Сохранить</button>
+                
             </form>
         </div>
     </div>
@@ -78,6 +84,11 @@
             <p class="popup__img-title"></p>
         </div>
     </div>
-    <script src="script.js"></script>
+    <!-- <script src="./src/components/index.js"></script>
+    <script src="./src/components/card.js"></script>
+    <script src="./src/components//modal.js"></script>
+    <script src="./src/components/utils.js"></script>
+    <script src="./src/components/validate.js"></script> -->
 </body>
 </html>
+
