@@ -80,7 +80,7 @@ startRendering()
 
 
 
-export {templateCardContainer, templateCardSection, startRendering};
+export {templateCardContainer, templateCardSection, startRendering, createCard};
 
 
 

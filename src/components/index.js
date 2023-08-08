@@ -1,6 +1,6 @@
 import '../pages/index.css';
 import {popups, openPopup, closePopup, addPopup, editPopup} from "../components/modal";
-import {templateCardSection,} from "../components/card";
+import {templateCardSection, createCard} from "../components/card";
 import {enableValidation} from "../components/validate";
 
 
