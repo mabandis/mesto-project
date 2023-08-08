@@ -1,4 +1,5 @@
-import {popups, openPopup, closePopup} from "../components/modal";
+import '../pages/index.css';
+import {popups, openPopup, closePopup, addPopup, editPopup} from "../components/modal";
 import {templateCardSection,} from "../components/card";
 import {enableValidation} from "../components/validate";
 
@@ -61,6 +62,7 @@ enableValidation({
   inputErrorClass: 'popup__field_type_error',
   errorClass: 'popup__field-error_active'
 });
+
 
 
 

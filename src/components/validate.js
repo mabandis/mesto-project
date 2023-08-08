@@ -46,7 +46,7 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
   };
   
   
-  const setEventListeners = (formElement, submitButtonSelector, inactiveButtonClass, inputSelector, inputErrorClass, errorClass) => {
+  const setEventListeners = (formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass) => {
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
     
@@ -54,9 +54,9 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
   
     formElement.addEventListener('reset', () => {
       setTimeout(() => {
-        toggleButtonState(inputList, buttonElement, inactiveButtonClass, inactiveButtonOpacity);
+        toggleButtonState(inputList, buttonElement, inactiveButtonClass);
       }, 0)
-    })
+    });
     
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {
@@ -70,7 +70,7 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
   const enableValidation = ({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) => {
     const formList = Array.from(document.querySelectorAll(formSelector));
     formList.forEach((formElement) => {
-      setEventListeners(formElement, submitButtonSelector, inactiveButtonClass, inputSelector, inputErrorClass, errorClass);
+      setEventListeners(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass);
   });
   };
 
