@@ -1,7 +1,7 @@
 import {closeByEscape} from "../components/utils";
 import {addCard} from "../components/card";
 import {editProfile, apiConfig, editAvatar, postCard} from "../components/api";
-import {renderingProfile, userId} from "../components/utils";
+import {renderingProfile, user} from "../components/utils";
 
 
 const popups = document.querySelectorAll('.popup')
