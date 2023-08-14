@@ -34,7 +34,7 @@ const addProfileButton = document.querySelector(".profile__add-button");
 const openAvatarButton = document.querySelector(".profile__avatar-button");
 const profileName = document.querySelector(".profile__name");
 const profileText = document.querySelector(".profile__text");
-const avatar = document.querySelector("profile__avatar")
+const avatar = document.querySelector(".profile__avatar")
 
 
 
@@ -66,7 +66,7 @@ userEditForm.addEventListener("submit", (evt) => {
 
 
 
-  // Обработчик отправки формы профиля
+  
 
   const editProfileSubmitButton = document.querySelector(".popup__profile-button")
   const profileInputName = document.querySelector('input[id="profile-name-field"]');
@@ -89,7 +89,7 @@ userEditForm.addEventListener("submit", (evt) => {
   }
   
   
-  //отправка формы карточки
+  
   const createCardButton = document.querySelector(".popup__card-button");
   const namePlaceInput = document.querySelector('#card-name-field');
   const linkPlaceInput = document.querySelector('#card-link-field');
@@ -116,7 +116,7 @@ userEditForm.addEventListener("submit", (evt) => {
   }
 
   
-  const avatarSubmitButton = document.querySelector('popup__avatar-button')
+  const avatarSubmitButton = document.querySelector('.popup__avatar-button')
   const avatarPopup = document.querySelector("#avatar_popup");
   const avatarInput = document.querySelector("#avatar-link-field");
 

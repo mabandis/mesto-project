@@ -4,15 +4,15 @@ import {templateCardSection, createCard} from "../components/card";
 import {enableValidation} from "../components/validate";
 import {checkResponse, getProfile, getInitialCards, apiConfig} from "../components/api";
 import {addCard} from "../components/card";
-import {renderingProfile, userId} from "../components/utils";
+import {renderingProfile, user} from "../components/utils";
 
 Promise.all([getProfile(apiConfig), getInitialCards(apiConfig)])
   .then(([userData, cards]) => {
+    renderingProfile(userData);
     let initialCards = Array.from(cards.reverse());
     initialCards.forEach(elem => {
       addCard(elem);
     })
-    renderingProfile(userData);
   })
   .catch((err) => {
     console.log(err);
@@ -28,11 +28,11 @@ Promise.all([getProfile(apiConfig), getInitialCards(apiConfig)])
   })
 
 
-  avatarSubmitButton.addEventListener('submit', handleAvatarSubmit);
+  avatarSubmitButton.addEventListener('click', handleAvatarSubmit);
 
-  createCardButton.addEventListener('submit', handleCardFormSubmit);
+  createCardButton.addEventListener('click', handleCardFormSubmit);
 
-  editProfileSubmitButton.addEventListener('submit', handleProfileFormSubmit);
+  editProfileSubmitButton.addEventListener('click', handleProfileFormSubmit);
 
 
 

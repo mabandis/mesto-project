@@ -7,16 +7,17 @@ function closeByEscape(evt) {
       const openPopup = document.querySelector('.popup_opened');
       closePopup(openPopup)
     };
-  };
+};
   
 
-let userId;
+let user = {id:undefined};
 
 const renderingProfile = (obj) => {
     profileName.textContent = obj.name;
     profileText.textContent = obj.about;
     avatar.src = obj.avatar;
-    userId = obj._id;
+    user.id = obj._id;
 }
+
  
-export {closeByEscape, renderingProfile, userId};
+export {closeByEscape, renderingProfile, user};
