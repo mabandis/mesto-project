@@ -12,7 +12,9 @@
     </header>
     <main>
         <section class="profile">
+            <button type="submit" class="profile__avatar-button">
             <img class="profile__avatar" src="<%=require('../src/images/Jacques-Yves_Cousteau.jpg')%>" alt="Здесь должно быть изображение">
+            </button>
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button class="profile__edit-button" type="button"></button>
@@ -27,7 +29,10 @@
                     <img class="element__image" src="#" alt="">
                     <div class="element__info-box">
                         <h2 class="element__title"></h2>
-                        <button class="element__like-icon" type="button"></button>
+                        <div class="element__container">
+                            <button class="element__like-icon" type="button"></button>
+                            <span class="element__munber-of-likes"></span>
+                        </div>
                     </div>
                 </article>
             </template>
@@ -70,7 +75,7 @@
                         <input class="popup__field" id="card-link-field" name="link-field" type="url" placeholder="Ссылка на картинку" required>
                         <span class="card-link-field-error popup__field-error"></span>
                     </label>
-                    <button class="popup__submit popup__card-button" type="submit">Сохранить</button>
+                    <button class="popup__submit popup__card-button" type="submit">Создать</button>
                 </fieldset>
                 
             </form>
@@ -81,6 +86,21 @@
             <img class="element__popup-image" src="#" alt="">
             <button class="popup__cancelling-button" type="button"></button>
             <p class="popup__img-title"></p>
+        </div>
+    </div>
+    <div class="popup" id="avatar_popup">
+        <div class="popup__box popup__size">
+            <button class="popup__cancelling-button" type="button"></button>
+            <h2 class="popup__title">Редактировать аватар</h2>
+            <form class="popup__form" id="edit-form" name="edit-form" novalidate>
+                <fieldset class="popup__fields">
+                    <label for="avatar-link-field">
+                        <input class="popup__field" id="avatar-link-field" name="link-field" type="url" placeholder="Ссылка на картинку" required>
+                        <span class="avatar-link-field-error popup__field-error"></span>
+                    </label>
+                    <button class="popup__submit popup__avatar-button" type="submit">Сохранить</button>
+                </fieldset>
+            </form>
         </div>
     </div>
 </body>

@@ -74,4 +74,13 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
   });
   };
 
+  enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__field',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__field_type_error',
+    errorClass: 'popup__field-error_active'
+  });
+
   export {enableValidation};
