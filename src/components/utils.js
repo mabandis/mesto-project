@@ -10,7 +10,7 @@ function closeByEscape(evt) {
 };
   
 
-let user = {id:undefined};
+const user = {id:undefined};
 
 const renderingProfile = (obj) => {
     profileName.textContent = obj.name;

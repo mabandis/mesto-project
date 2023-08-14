@@ -1,5 +1,5 @@
 import '../pages/index.css';
-import {popups, openPopup, closePopup, avatarSubmitButton, createCardButton, handleProfileFormSubmit, editProfileSubmitButton, handleCardFormSubmit, handleAvatarSubmit, userEditForm, addCardForm, avatarForm, addPopup, editPopup, avatarPopup} from "../components/modal";
+import {popups, openPopup, closePopup, profileText, profileName, openAvatarButton, addProfileButton, profileInputText, profileInputName, editProfileButton, avatarSubmitButton, createCardButton, handleProfileFormSubmit, closeProfileButtons, editProfileSubmitButton, handleCardFormSubmit, handleAvatarSubmit, userEditForm, addCardForm, avatarForm, addPopup, editPopup, avatarPopup} from "../components/modal";
 import {templateCardSection, createCard} from "../components/card";
 import {enableValidation} from "../components/validate";
 import {checkResponse, getProfile, getInitialCards, apiConfig} from "../components/api";
@@ -26,6 +26,31 @@ Promise.all([getProfile(apiConfig), getInitialCards(apiConfig)])
       }
     });
   })
+
+
+  closeProfileButtons.forEach ( button => {
+    button.addEventListener ("click", (evt) => {
+        closePopup(evt.target.closest('.popup'))
+    })
+})
+
+
+editProfileButton.addEventListener("click", () => {
+  openPopup(editPopup)
+  profileInputText.value = profileText.textContent;
+  profileInputName.value = profileName.textContent;
+});
+
+
+addProfileButton.addEventListener("click", () => {
+  openPopup(addPopup)
+});
+
+
+openAvatarButton.addEventListener("click", () => {
+  openPopup(avatarPopup)
+});
+
 
 
   avatarForm.addEventListener('submit', handleAvatarSubmit);

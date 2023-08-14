@@ -12,12 +12,6 @@ const popupImgTitle = document.querySelector(".popup__img-title");
 const closeProfileButtons = document.querySelectorAll(".popup__cancelling-button");
 
 
-closeProfileButtons.forEach ( button => {
-    button.addEventListener ("click", (evt) => {
-        closePopup(evt.target.closest('.popup'))
-    })
-})
-
 function openPopup (popup) {
     popup.classList.add("popup_opened")
     document.addEventListener('keydown', closeByEscape)
@@ -35,20 +29,6 @@ const openAvatarButton = document.querySelector(".profile__avatar-button");
 const profileName = document.querySelector(".profile__name");
 const profileText = document.querySelector(".profile__text");
 const avatar = document.querySelector(".profile__avatar")
-
-
-
-
-editProfileButton.addEventListener("click", () => {
-    openPopup(editPopup)
-    profileInputText.value = profileText.textContent;
-    profileInputName.value = profileName.textContent;
-});
-
-
-addProfileButton.addEventListener("click", () => {
-    openPopup(addPopup)
-});
 
 
 const userEditForm = document.querySelector("#edit-form");
@@ -129,6 +109,7 @@ const avatarForm = document.querySelector("#avatar-form");
       .then((res) => {
         renderingProfile(res);
         closePopup(avatarPopup);
+        evt.target.reset();
       })
       .catch((err) => {
         console.log(err);
@@ -138,12 +119,9 @@ const avatarForm = document.querySelector("#avatar-form");
       })
   }
   
-  openAvatarButton.addEventListener("click", () => {
-    openPopup(avatarPopup)
-    avatarInput.value = "";
-});
+  
   
 
-export {popups, openPopup, closePopup, handleProfileFormSubmit, handleCardFormSubmit, handleAvatarSubmit, userEditForm, addCardForm, avatarForm, editPopup, addPopup, imgPopup, avatarPopup, popupImg, popupImgTitle, profileName, profileText, avatar, avatarSubmitButton, createCardButton, editProfileSubmitButton};
+export {popups, openPopup, closePopup, handleProfileFormSubmit, handleCardFormSubmit, handleAvatarSubmit, profileText, profileName, openAvatarButton, addProfileButton, profileInputName, profileInputText, closeProfileButtons, editProfileButton, userEditForm, addCardForm, avatarForm, editPopup, addPopup, imgPopup, avatarPopup, popupImg, popupImgTitle, avatar, avatarSubmitButton, createCardButton, editProfileSubmitButton};
 
 
