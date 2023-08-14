@@ -1,6 +1,9 @@
 const apiConfig = {
     address: 'https://nomoreparties.co/v1/plus-cohort-27/',
-    token: '37a7ba40-eb6a-4212-b4ef-3f20a061a16d'
+    headers: {
+      authorization: '37a7ba40-eb6a-4212-b4ef-3f20a061a16d',
+      'Content-Type': 'application/json'
+    }
   }
   
 function checkResponse(res) {
@@ -15,9 +18,7 @@ function checkResponse(res) {
 const getProfile = (apiConfig) => {
     return fetch(apiConfig.address + 'users/me', {
       method: 'GET',
-      headers: {
-        authorization: apiConfig.token
-      }
+      headers: apiConfig.headers
     })
       .then(res => checkResponse(res))
   }
@@ -26,10 +27,7 @@ const getProfile = (apiConfig) => {
 const editProfile = (nameInput, jobInput, apiConfig) => {
     return fetch(apiConfig.address + 'users/me', {
       method: 'PATCH',
-      headers: {
-        authorization: apiConfig.token,
-        'Content-Type': 'application/json'
-      },
+      headers: apiConfig.headers,
       body: JSON.stringify({
         name: nameInput.value,
         about: jobInput.value
@@ -41,10 +39,7 @@ const editProfile = (nameInput, jobInput, apiConfig) => {
 const editAvatar = (avatarInput, apiConfig) => {
     return fetch(apiConfig.address + 'users/me/avatar', {
       method: 'PATCH',
-      headers: {
-        authorization: apiConfig.token,
-        'Content-Type': 'application/json'
-      },
+      headers: apiConfig.headers,
       body: JSON.stringify({
         avatar: avatarInput.value
       })
@@ -56,9 +51,7 @@ const editAvatar = (avatarInput, apiConfig) => {
 const getInitialCards = (apiConfig) => {
     return fetch(apiConfig.address + 'cards', {
       method: 'GET',
-      headers: {
-        authorization: apiConfig.token
-      }
+      headers: apiConfig.headers
     })
       .then(res => checkResponse(res))
   }
@@ -67,10 +60,7 @@ const getInitialCards = (apiConfig) => {
 const postCard = (elem, apiConfig) => {
     return fetch(apiConfig.address + 'cards', {
       method: 'POST',
-      headers: {
-        authorization: apiConfig.token,
-        'Content-Type': 'application/json'
-      },
+      headers: apiConfig.headers,
       body: JSON.stringify({
         name: elem.name,
         link: elem.link,
@@ -83,9 +73,7 @@ const postCard = (elem, apiConfig) => {
 const deleteCard = (card, apiConfig) => {
     return fetch(apiConfig.address + `cards/${card._id}`, {
       method: 'DELETE',
-      headers: {
-        authorization: apiConfig.token
-      }
+      headers: apiConfig.headers
     })
       .then(res => checkResponse(res))
   }
@@ -94,9 +82,7 @@ const deleteCard = (card, apiConfig) => {
 const putLike = (card, apiConfig) => {
     return fetch(apiConfig.address + `cards/likes/${card._id}`, {
       method: 'PUT',
-      headers: {
-        authorization: apiConfig.token
-      }
+      headers: apiConfig.headers
     })
       .then(res => checkResponse(res))
   }
@@ -105,9 +91,7 @@ const putLike = (card, apiConfig) => {
 const deleteLike = (card, apiConfig) => {
     return fetch(apiConfig.address + `cards/likes/${card._id}`, {
       method: 'DELETE',
-      headers: {
-        authorization: apiConfig.token
-      }
+      headers: apiConfig.headers
     })
       .then(res => checkResponse(res))
   }

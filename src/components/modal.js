@@ -52,13 +52,15 @@ addProfileButton.addEventListener("click", () => {
 
 
 const userEditForm = document.querySelector("#edit-form");
+const addCardForm = document.querySelector("#add-form");
+const avatarForm = document.querySelector("#avatar-form");
 
-userEditForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  closePopup(evt.target.closest('.popup'))
-  profileText.textContent = profileInputText.value;
-  profileName.textContent = profileInputName.value;
-});
+// userEditForm.addEventListener("submit", (evt) => {
+//   evt.preventDefault();
+//   closePopup(evt.target.closest('.popup'))
+//   profileText.textContent = profileInputText.value;
+//   profileName.textContent = profileInputName.value;
+// });
   
 
 
@@ -78,7 +80,7 @@ userEditForm.addEventListener("submit", (evt) => {
     editProfile(profileInputName, profileInputText, apiConfig)
       .then((res) => {
         renderingProfile(res);
-        closePopup(profilePopup);
+        closePopup(editPopup);
       })
       .catch((err) => {
         console.log(err);
@@ -138,9 +140,10 @@ userEditForm.addEventListener("submit", (evt) => {
   
   openAvatarButton.addEventListener("click", () => {
     openPopup(avatarPopup)
+    avatarInput.value = "";
 });
   
 
-export {popups, openPopup, closePopup, handleProfileFormSubmit, handleCardFormSubmit, handleAvatarSubmit, editPopup, addPopup, imgPopup, avatarPopup, popupImg, popupImgTitle, profileName, profileText, avatar, avatarSubmitButton, createCardButton, editProfileSubmitButton};
+export {popups, openPopup, closePopup, handleProfileFormSubmit, handleCardFormSubmit, handleAvatarSubmit, userEditForm, addCardForm, avatarForm, editPopup, addPopup, imgPopup, avatarPopup, popupImg, popupImgTitle, profileName, profileText, avatar, avatarSubmitButton, createCardButton, editProfileSubmitButton};
 
 
