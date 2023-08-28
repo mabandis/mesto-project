@@ -33,6 +33,18 @@ class Api {
     })
     .then(res => { return this.checkResponse(res) })  
   }
+
+  editAvatar(avatarInput) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar: avatarInput.value
+      })
+    })
+    .then(res => { return this.checkResponse(res) }) 
+  } 
+
 }
 
 export const api = new Api ({

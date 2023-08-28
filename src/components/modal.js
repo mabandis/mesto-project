@@ -105,7 +105,7 @@ const avatarForm = document.querySelector("#avatar-form");
   function handleAvatarSubmit(evt) {
     evt.preventDefault();
     avatarSubmitButton.textContent = "Сохранение...";
-    editAvatar(avatarInput, apiConfig)
+    api.editAvatar(avatarInput)
       .then((res) => {
         renderingProfile(res);
         closePopup(avatarPopup);
