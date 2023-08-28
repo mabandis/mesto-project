@@ -1,11 +1,3 @@
-// const apiConfig = {
-//     address: 'https://nomoreparties.co/v1/plus-cohort-27/',
-//     headers: {
-//       authorization: '37a7ba40-eb6a-4212-b4ef-3f20a061a16d',
-//       'Content-Type': 'application/json'
-//     }
-// }
-
 class Api {
   constructor(options) {
     this.baseUrl = options.baseUrl;
