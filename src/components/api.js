@@ -14,7 +14,12 @@ class Api {
 
   getProfile() {
     return fetch(`${this.baseUrl}/users/me`, {headers: this.headers})
-    .then(res => { return this.checkResponse(res); })
+    .then(res => { return this.checkResponse(res) })
+  }
+
+  getInitialCard() {
+    return fetch(`${this.baseUrl}/cards`, {headers: this.headers})
+    .then(res => { return this.checkResponse(res) })
   }
 }
 

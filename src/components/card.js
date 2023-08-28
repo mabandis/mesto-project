@@ -1,5 +1,5 @@
 import {openPopup, imgPopup, popupImg, popupImgTitle} from "../components/modal";
-import {apiConfig, putLike, deleteLike, deleteCard} from "../components/api";
+import {putLike, deleteLike, deleteCard} from "../components/api";
 import { user } from "../components/utils";
 
 

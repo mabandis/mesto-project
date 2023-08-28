@@ -8,9 +8,13 @@ import {renderingProfile, user} from "../components/utils";
 
 
 
-Promise.all([api.getProfile()])
-  .then(([userData]) => {
+Promise.all([api.getProfile(), api.getInitialCard()])
+  .then(([userData, cards]) => {
     renderingProfile(userData);
+    const initialCards = Array.from(cards.reverse());
+    initialCards.forEach(item => {
+      addCard(item)
+    })
   })
   .catch((err) => {
     console.log(err);
