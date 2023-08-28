@@ -1,6 +1,6 @@
 import {closeByEscape} from "../components/utils";
 import {addCard} from "../components/card";
-import {editProfile, apiConfig, editAvatar, postCard} from "../components/api";
+import {editProfile, api, editAvatar, postCard} from "../components/api";
 import {renderingProfile, user} from "../components/utils";
 
 
@@ -57,7 +57,7 @@ const avatarForm = document.querySelector("#avatar-form");
   function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     editProfileSubmitButton.textContent = "Сохранение...";
-    editProfile(profileInputName, profileInputText, apiConfig)
+    api.editProfile(profileInputName, profileInputText)
       .then((res) => {
         renderingProfile(res);
         closePopup(editPopup);

@@ -21,6 +21,18 @@ class Api {
     return fetch(`${this.baseUrl}/cards`, {headers: this.headers})
     .then(res => { return this.checkResponse(res) })
   }
+
+  editProfile(nameInput, jobInput) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify({
+        name: nameInput.value,
+        about: jobInput.value
+      })
+    })
+    .then(res => { return this.checkResponse(res) })  
+  }
 }
 
 export const api = new Api ({
@@ -30,37 +42,6 @@ export const api = new Api ({
     'Content-Type': 'application/json'
   }
 })
-
-
-// function checkResponse(res) {
-//     if (res.ok) {
-//       return res.json();
-//     }
-//     else {
-//       return Promise.reject(`Ошибка: ${res.status}`);
-//     }
-//   }
-
-// const getProfile = (apiConfig) => {
-//     return fetch(apiConfig.address + 'users/me', {
-//       method: 'GET',
-//       headers: apiConfig.headers
-//     })
-//       .then(res => checkResponse(res))
-//   }
-
-
-// const editProfile = (nameInput, jobInput, apiConfig) => {
-//     return fetch(apiConfig.address + 'users/me', {
-//       method: 'PATCH',
-//       headers: apiConfig.headers,
-//       body: JSON.stringify({
-//         name: nameInput.value,
-//         about: jobInput.value
-//       })
-//     })
-//       .then(res => checkResponse(res))
-//   }
   
 // const editAvatar = (avatarInput, apiConfig) => {
 //     return fetch(apiConfig.address + 'users/me/avatar', {
@@ -73,14 +54,6 @@ export const api = new Api ({
 //       .then(res => checkResponse(res))
 //   }  
 
-  
-// const getInitialCards = (apiConfig) => {
-//     return fetch(apiConfig.address + 'cards', {
-//       method: 'GET',
-//       headers: apiConfig.headers
-//     })
-//       .then(res => checkResponse(res))
-//   }
   
   
 // const postCard = (elem, apiConfig) => {
