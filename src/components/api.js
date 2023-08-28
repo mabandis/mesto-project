@@ -14,12 +14,12 @@ class Api {
 
   getProfile() {
     return fetch(`${this.baseUrl}/users/me`, {headers: this.headers})
-    .then(res => { return this.checkResponse(res) })
+    .then(this.checkResponse)
   }
 
   getInitialCard() {
     return fetch(`${this.baseUrl}/cards`, {headers: this.headers})
-    .then(res => { return this.checkResponse(res) })
+    .then(this.checkResponse)
   }
 
   editProfile(nameInput, jobInput) {
@@ -31,7 +31,7 @@ class Api {
         about: jobInput.value
       })
     })
-    .then(res => { return this.checkResponse(res) })  
+    .then(this.checkResponse)  
   }
 
   editAvatar(avatarInput) {
@@ -42,8 +42,44 @@ class Api {
         avatar: avatarInput.value
       })
     })
-    .then(res => { return this.checkResponse(res) }) 
-  } 
+    .then(this.checkResponse) 
+  }
+  
+  postCard(elem) {
+    return fetch(`${this.baseUrl}/cards`, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify({
+        name: elem.name,
+        link: elem.link,
+      })
+    })
+    .then(this.checkResponse)  
+  }
+
+  deleteCard(card) {
+    return fetch(`${this.baseUrl}/cards/${card._id}`, {
+      method: 'DELETE',
+      headers: this.headers
+    })
+    .then(this.checkResponse)
+  }
+
+  putLike(card) {
+    return fetch(`${this.baseUrl}/cards/likes/${card._id}`, {
+      method: 'PUT',
+      headers: this.headers
+    })
+      .then(this.checkResponse)
+  }
+
+  deleteLike(card) {
+    return fetch(`${this.baseUrl}cards/likes/${card._id}`, {
+      method: 'DELETE',
+      headers: this.headers
+    })
+      .then(this.checkResponse)
+  }
 
 }
 
@@ -54,59 +90,3 @@ export const api = new Api ({
     'Content-Type': 'application/json'
   }
 })
-  
-// const editAvatar = (avatarInput, apiConfig) => {
-//     return fetch(apiConfig.address + 'users/me/avatar', {
-//       method: 'PATCH',
-//       headers: apiConfig.headers,
-//       body: JSON.stringify({
-//         avatar: avatarInput.value
-//       })
-//     })
-//       .then(res => checkResponse(res))
-//   }  
-
-  
-  
-// const postCard = (elem, apiConfig) => {
-//     return fetch(apiConfig.address + 'cards', {
-//       method: 'POST',
-//       headers: apiConfig.headers,
-//       body: JSON.stringify({
-//         name: elem.name,
-//         link: elem.link,
-//       })
-//     })
-//       .then(res => checkResponse(res))
-//   }
-  
-  
-// const deleteCard = (card, apiConfig) => {
-//     return fetch(apiConfig.address + `cards/${card._id}`, {
-//       method: 'DELETE',
-//       headers: apiConfig.headers
-//     })
-//       .then(res => checkResponse(res))
-//   }
-
-  
-// const putLike = (card, apiConfig) => {
-//     return fetch(apiConfig.address + `cards/likes/${card._id}`, {
-//       method: 'PUT',
-//       headers: apiConfig.headers
-//     })
-//       .then(res => checkResponse(res))
-//   }
-  
-
-// const deleteLike = (card, apiConfig) => {
-//     return fetch(apiConfig.address + `cards/likes/${card._id}`, {
-//       method: 'DELETE',
-//       headers: apiConfig.headers
-//     })
-//       .then(res => checkResponse(res))
-//   }
-
-// export {apiConfig, checkResponse, getProfile, editProfile, editAvatar, getInitialCards, postCard, deleteCard, putLike, deleteLike};
-
-

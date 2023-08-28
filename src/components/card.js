@@ -1,5 +1,5 @@
 import {openPopup, imgPopup, popupImg, popupImgTitle} from "../components/modal";
-import {putLike, deleteLike, deleteCard} from "../components/api";
+import {api} from "../components/api";
 import { user } from "../components/utils";
 
 
@@ -35,7 +35,7 @@ function createCard(elem) {
   }
   likeButton.addEventListener('click', () => {
     if (likeButton.classList.contains('element__like-icon-active')) {
-      deleteLike(elem, apiConfig)
+      api.deleteLike(elem)
         .then(res => {
           removeLikeDOM(likes, res, likeButton)
         })
@@ -44,7 +44,7 @@ function createCard(elem) {
         });
     }
     else {
-      putLike(elem, apiConfig)
+      api.putLike(elem)
         .then(res => {
           setLikeDOM(likes, res, likeButton)
         })
@@ -59,7 +59,7 @@ function createCard(elem) {
   if (elem.owner._id == user.id) {
     deleteButton.addEventListener('click', () => {
       const card = deleteButton.closest('.element');
-      deleteCard(elem, apiConfig)
+      api.deleteCard(elem)
         .then(res => {
           console.log(res);
           card.remove()

@@ -1,6 +1,6 @@
 import {closeByEscape} from "../components/utils";
 import {addCard} from "../components/card";
-import {editProfile, api, editAvatar, postCard} from "../components/api";
+import {api} from "../components/api";
 import {renderingProfile, user} from "../components/utils";
 
 
@@ -83,7 +83,7 @@ const avatarForm = document.querySelector("#avatar-form");
     const card = {};
     card.name = namePlaceInput.value;
     card.link = linkPlaceInput.value;
-    postCard(card, apiConfig)
+    api.postCard(card)
       .then(res => {
         addCard(res);
         closePopup(addPopup);

@@ -20,21 +20,6 @@ Promise.all([api.getProfile(), api.getInitialCard()])
     console.log(err);
   });
 
-
-
-// Promise.all([api.getProfile(), getInitialCards(apiConfig)])
-//   .then(([userData, cards]) => {
-//     renderingProfile(userData);
-//     const initialCards = Array.from(cards.reverse());
-//     initialCards.forEach(elem => {
-//       addCard(elem);
-//     })
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-
   popups.forEach(popup => {
     popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup')) {
