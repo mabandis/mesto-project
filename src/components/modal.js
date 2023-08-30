@@ -1,6 +1,6 @@
 import {closeByEscape} from "../components/utils";
-import {addCard} from "../components/card";
-import {api} from "../components/api";
+import {addCard} from "./Card";
+import {api} from "./Api";
 import {renderingProfile, user} from "../components/utils";
 
 
