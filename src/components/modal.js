@@ -34,13 +34,6 @@ const avatar = document.querySelector(".profile__avatar")
 const userEditForm = document.querySelector("#edit-form");
 const addCardForm = document.querySelector("#add-form");
 const avatarForm = document.querySelector("#avatar-form");
-
-// userEditForm.addEventListener("submit", (evt) => {
-//   evt.preventDefault();
-//   closePopup(evt.target.closest('.popup'))
-//   profileText.textContent = profileInputText.value;
-//   profileName.textContent = profileInputName.value;
-// });
   
 
 

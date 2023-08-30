@@ -3,17 +3,58 @@ import {api} from "../components/api";
 import { user } from "../components/utils";
 
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, userId, dataCard, actionsOnCard) {
     this.card = data; // проверить
     this.template = templateSelector;
+    this.userId = userId;
+    this.cardId = dataCard.cardId;
+    this.ownerId = dataCard.ownerId;
 
     this.cardImage = this.card.link;
     this.cardName = this.card.name;
+
+    this.cardOpened = actionsOnCard.cardZoom;
+    this.cardDelete = actionsOnCard.cardDel;
+    this.setLike = actionsOnCard.cardLike;
+    this.removeLike = actionsOnCard.cardRemoveLike;
   }
 
   getTemplate() {
     return document.querySelector(this.template).content.querySelector('.element').cloneNode(true);
   }
+
+  removeCard() {
+    this.cardElement.remove();
+    this.cardElement = null;
+  }
+
+  checkMyLike() {
+    return this.likes.find((userLike) => userLike.id === this.userId)
+  }
+
+  renderLike(card) {
+    this.likes = card.likes;
+    if (this.likes === 0) {
+      this.elementLikeCounter.textContent = ''
+    } else {
+      this.elementLikeCounter.textContent = this.likes.length;
+    }
+
+    if(this.checkMyLike()) {
+      this.elementLike.classList.add('element__like-icon-active');
+    } else {
+      this.elementLike.classList.remove('element__like-icon-active');
+    }
+  }
+
+  interactLike() {
+    if(this.checkMyLike()) {
+      this.removeLike(this.cardId);
+    } else {
+      this.setLike(this.cardId);
+    }
+  }
+
 
   makeCard() {
     this.cardElement = this.getTemplate();
@@ -26,7 +67,9 @@ class Card {
     this.elementImage.src = this.cardImage;
     this.elementImage.alt = this.cardName;
     this.elementName.textContent = this.cardName;
-    // доделать обработчики здесь перед return
+    
+    this.renderLike(this.card)
+
     return this.cardElement;
   }
 
