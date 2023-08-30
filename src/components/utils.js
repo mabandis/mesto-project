@@ -10,14 +10,11 @@ function closeByEscape(evt) {
 };
   
 
-const user = {id:undefined};
-
 const renderingProfile = (obj) => {
     profileName.textContent = obj.name;
     profileText.textContent = obj.about;
     avatar.src = obj.avatar;
-    user.id = obj._id;
 }
 
  
-export {closeByEscape, renderingProfile, user};
+export {closeByEscape, renderingProfile};

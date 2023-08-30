@@ -78,7 +78,7 @@ export class Card {
     this.renderLike(this.card);
 
     this.setEventListeners();
-
+    
     return this.cardElement;
   }
 

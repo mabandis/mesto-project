@@ -4,15 +4,15 @@ import {enableValidation} from "./validate";
 import {api} from './Api';
 import {Card} from "./Card";
 import { Section } from './Section';
-import {renderingProfile, user} from "./utils";
+import {renderingProfile} from "./utils";
 
 let userId;
 
 const renderCard = function (data) {
   const cardItem = new Card(data, '#element-template', userId, {cardId: data._id, ownerId: data.owner._id}, {
-  cardDel: (cardItem, cardId) => {api.deleteCard(cardId)
+  cardDel: (cardId) => {api.deleteCard(cardId)
     .then(() => {
-      cardItem.remove();
+      cardItem.removeCard();
     })
     .catch((err) => {
       console.log(err);
@@ -32,7 +32,6 @@ const renderInitialCards = new Section({
 
 Promise.all([api.getProfile(), api.getInitialCard()])
   .then(([userData, data]) => {
-    userId = userData._id;
     renderingProfile(userData);
     renderInitialCards.renderItems(data.reverse());
   })
