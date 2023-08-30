@@ -1,5 +1,4 @@
 import {closeByEscape} from "../components/utils";
-import {addCard} from "./Card";
 import {api} from "./Api";
 import {renderingProfile, user} from "../components/utils";
 

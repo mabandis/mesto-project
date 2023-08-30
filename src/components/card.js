@@ -1,10 +1,8 @@
-import {openPopup, imgPopup, popupImg, popupImgTitle} from "./modal";
-import {api} from "./Api";
-import { user } from "./utils";
+
 
 export class Card {
-  constructor(data, templateSelector, userId, dataCard, actionsOnCard, actionsOnCard) {
-    this.card = data; // проверить
+  constructor(data, templateSelector, userId, dataCard, cardDel) {
+    this.card = data;
     this.template = templateSelector;
     this.userId = userId;
     this.cardId = dataCard.cardId;
@@ -13,10 +11,10 @@ export class Card {
     this.cardImage = this.card.link;
     this.cardName = this.card.name;
 
-    this.cardOpened = actionsOnCard.cardZoom;
-    this.cardDelete = actionsOnCard.cardDel;
-    this.setLike = actionsOnCard.cardLike;
-    this.removeLike = actionsOnCard.cardRemoveLike;
+    // this.cardOpened = actionsOnCard.cardZoom;
+    this.cardDelete = cardDel;
+    // this.setLike = actionsOnCard.cardLike;
+    // this.removeLike = actionsOnCard.cardRemoveLike;
   }
 
   getTemplate() {
@@ -29,7 +27,7 @@ export class Card {
   }
 
   checkMyLike() {
-    return this.likes.find((userLike) => userLike.id === this.userId)
+    return this.likes.find((userLike) => userLike._id === this.userId)
   }
 
   renderLike(card) {
@@ -47,21 +45,24 @@ export class Card {
     }
   }
 
-  interactLike() {
-    if(this.checkMyLike()) {
-      this.removeLike(this.cardId);
-    } else {
-      this.setLike(this.cardId);
-    }
-  }
+  // interactLike() {
+  //   if(this.checkMyLike()) {
+  //     this.removeLike(this.cardId);
+  //   } else {
+  //     this.setLike(this.cardId);
+  //   }
+  // }
 
-  setEventHandlers = () => {
-    this.elementLike.addEventListener('click', this.interactLike());
-    this.elementImage.addEventListener('click', this.cardOpened(this.cardImage, this.cardName));
+  setEventListeners = () => {
+    // this.elementLike.addEventListener('click', this.interactLike());
+    // this.elementImage.addEventListener('click', this.cardOpened(this.cardImage, this.cardName));
+    if(this.userId === this.ownerId) {
+      this.elementDel.addEventListener('click', this.cardDelete(this, this.cardId));
+    } else {
+      this.elementDel.remove();
+    }
    }
   
-
-
   makeCard() {
     this.cardElement = this.getTemplate();
     this.elementImage = this.cardElement.querySelector('.element__image');
@@ -74,7 +75,9 @@ export class Card {
     this.elementImage.alt = this.cardName;
     this.elementName.textContent = this.cardName;
     
-    this.renderLike(this.card)
+    this.renderLike(this.card);
+
+    this.setEventListeners();
 
     return this.cardElement;
   }
