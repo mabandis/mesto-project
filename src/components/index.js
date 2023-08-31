@@ -1,11 +1,12 @@
 import '../pages/index.css';
-import {popups, openPopup, closePopup, profileText, profileName, openAvatarButton, addProfileButton, profileInputText, profileInputName, editProfileButton, avatarSubmitButton, createCardButton, handleProfileFormSubmit, closeProfileButtons, editProfileSubmitButton, handleCardFormSubmit, handleAvatarSubmit, userEditForm, addCardForm, avatarForm, addPopup, editPopup, avatarPopup} from "../components/modal";
+import { editProfileButton, nameEdit, aboutEdit } from '../utils/constants';
 import {enableValidation} from "./validate";
 import { api } from './Api';
 import { Card } from "./Card";
 import { Section } from './Section';
-import { PopupWhithImage } from './PopupWithImage';
-import {renderingProfile} from "./utils";
+import { PopupWithImage } from './PopupWithImage';
+import { PopupWithForm } from './PopupWithForm'; 
+import { UserInfo } from './UserInfo';
 
 
 let userId;
@@ -47,59 +48,51 @@ const renderInitialCards = new Section({
   }
 }, '.elements');
 
-const popupImage = new PopupWhithImage('#img_popup');
+const popupImage = new PopupWithImage('#img_popup');
 popupImage.setPopupEventListeners();
+
+const userInfo = new UserInfo ({
+  nameSelector: '.profile__name',
+  descriptionSelector: '.profile__text', 
+  avatarSelector: '.profile__avatar'
+})
 
 Promise.all([api.getProfile(), api.getInitialCard()])
   .then(([userData, data]) => {
     userId = userData._id;
-    renderingProfile(userData);
+    userInfo.editUserInfo({ getName:userData.name, getDescription:userData.about });
+    userInfo.editUserAvatar( userData.avatar )
     renderInitialCards.renderItems(data.reverse());
   })
   .catch((err) => {
     console.log(err);
   })
 
-//   popups.forEach(popup => {
-//     popup.addEventListener('mousedown', (evt) => {
-//       if (evt.target.classList.contains('popup')) {
-//         closePopup(popup)
-//       }
-//     });
-//   })
+const popupEditProfile = new PopupWithForm ('#edit_popup', {
+  formSubmitFunction: ({userData}) => {popupEditProfile.changeButtonText(),
+     api.editProfile({name, about})
+     .then((res) => {
+      userInfo.editUserInfo({ getName: res.name, getDescription: res.about });
+      popupEditProfile.close()
+     })
+     .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupEditProfile.buttonDefaultText()
+    }) 
+  }
+})
+popupEditProfile.setPopupEventListeners()
 
+//обработчики на кнопки на сайте
 
-//   closeProfileButtons.forEach ( button => {
-//     button.addEventListener ("click", (evt) => {
-//         closePopup(evt.target.closest('.popup'))
-//     })
-// })
-
-
-// editProfileButton.addEventListener("click", () => {
-//   openPopup(editPopup)
-//   profileInputText.value = profileText.textContent;
-//   profileInputName.value = profileName.textContent;
-// });
-
-
-// addProfileButton.addEventListener("click", () => {
-//   openPopup(addPopup)
-// });
-
-
-// openAvatarButton.addEventListener("click", () => {
-//   openPopup(avatarPopup)
-// });
-
-
-
-//   avatarForm.addEventListener('submit', handleAvatarSubmit);
-
-//   addCardForm.addEventListener('submit', handleCardFormSubmit);
-
-//   userEditForm.addEventListener('submit', handleProfileFormSubmit);
-
+editProfileButton.addEventListener('click', function() {
+  popupEditProfile.open();
+  const currentUserInfo = userInfo.getUserInfo();
+  nameEdit.value = currentUserInfo.getName;
+  aboutEdit.value = currentUserInfo.getDescription;
+});
 
 
 

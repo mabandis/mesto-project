@@ -22,13 +22,13 @@ class Api {
     .then(this.checkResponse)
   }
 
-  editProfile(nameInput, jobInput) {
+  editProfile(name, about) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
-        name: nameInput.value,
-        about: jobInput.value
+        name: name,
+        about: about
       })
     })
     .then(this.checkResponse)  
@@ -51,7 +51,7 @@ class Api {
       headers: this.headers,
       body: JSON.stringify({
         name: elem.name,
-        link: elem.link,
+        link: elem.link
       })
     })
     .then(this.checkResponse)  
