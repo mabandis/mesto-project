@@ -1,7 +1,7 @@
 
 
 export class Card {
-  constructor(data, templateSelector, userId, ownerData, cardDelete, cardLike, cardRemoveLike) {
+  constructor(data, templateSelector, userId, ownerData, cardZoom, cardDelete, cardLike, cardRemoveLike) {
     this.card = data;
     this.template = templateSelector;
     this.userId = userId;
@@ -11,7 +11,7 @@ export class Card {
     this.cardImage = this.card.link;
     this.cardName = this.card.name;
 
-    // this.cardOpened = actionsOnCard.cardZoom;
+    this.cardOpened = cardZoom;
     this.cardDelete = cardDelete;
     this.setLike = cardLike;
     this.removeLike = cardRemoveLike;
@@ -77,7 +77,7 @@ export class Card {
 
   setEventListeners = () => {
     this.elementLike.addEventListener('click', () => {this.interactLike()});
-    // this.elementImage.addEventListener('click', this.cardOpened(this.cardImage, this.cardName));
+    this.elementImage.addEventListener('click', () => {this.cardOpened(this.cardImage, this.cardName)});
     if(this.userId === this.ownerId) {
       this.elementDel.addEventListener('click', () => {this.cardDelete(this.cardId)});
     } else {

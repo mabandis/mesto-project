@@ -1,9 +1,10 @@
 import '../pages/index.css';
 import {popups, openPopup, closePopup, profileText, profileName, openAvatarButton, addProfileButton, profileInputText, profileInputName, editProfileButton, avatarSubmitButton, createCardButton, handleProfileFormSubmit, closeProfileButtons, editProfileSubmitButton, handleCardFormSubmit, handleAvatarSubmit, userEditForm, addCardForm, avatarForm, addPopup, editPopup, avatarPopup} from "../components/modal";
 import {enableValidation} from "./validate";
-import {api} from './Api';
-import {Card} from "./Card";
+import { api } from './Api';
+import { Card } from "./Card";
 import { Section } from './Section';
+import { PopupWhithImage } from './PopupWithImage';
 import {renderingProfile} from "./utils";
 
 // const userId = "9f4abc1b7c1883549cb0c976";
@@ -11,6 +12,9 @@ let userId;
 
 const renderCard = function (data) {
   const cardItem = new Card(data, '#element-template', userId, {cardId: data._id, ownerId: data.owner._id},
+  (text, image) => {
+    popupImage.open(text, image);
+  },
   (cardId) => {
     api.deleteCard(cardId)
       .then(() => {cardItem.removeCard()})
@@ -42,6 +46,8 @@ const renderInitialCards = new Section({
   }
 }, '.elements');
 
+const popupImage = new PopupWhithImage('#img_popup');
+popupImage.setPopupEventListeners();
 
 Promise.all([api.getProfile(), api.getInitialCard()])
   .then(([userData, data]) => {
