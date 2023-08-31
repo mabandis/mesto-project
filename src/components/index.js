@@ -6,7 +6,8 @@ import {Card} from "./Card";
 import { Section } from './Section';
 import {renderingProfile} from "./utils";
 
-const userId = "9f4abc1b7c1883549cb0c976";
+// const userId = "9f4abc1b7c1883549cb0c976";
+let userId;
 
 const renderCard = function (data) {
   const cardItem = new Card(data, '#element-template', userId, {cardId: data._id, ownerId: data.owner._id},
@@ -16,7 +17,21 @@ const renderCard = function (data) {
       .catch((err) => {
         console.log(err);
       })
-  }
+  },
+  (cardId) => {
+    api.putLike(cardId)
+      .then((cardId) => {cardItem.renderLike(cardId)})
+      .catch((err) => {
+        console.log(err);
+      })
+  },
+  (cardId) => {
+    api.deleteLike(cardId)
+      .then((cardId) => {cardItem.renderLike(cardId)})
+      .catch((err) => {
+        console.log(err);
+      })
+    }
   )
   return cardItem.makeCard();
 }
@@ -30,6 +45,7 @@ const renderInitialCards = new Section({
 
 Promise.all([api.getProfile(), api.getInitialCard()])
   .then(([userData, data]) => {
+    userId = userData._id;
     renderingProfile(userData);
     renderInitialCards.renderItems(data.reverse());
   })
