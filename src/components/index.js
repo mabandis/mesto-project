@@ -6,20 +6,18 @@ import {Card} from "./Card";
 import { Section } from './Section';
 import {renderingProfile} from "./utils";
 
-let userId;
+const userId = "9f4abc1b7c1883549cb0c976";
 
 const renderCard = function (data) {
-  const cardItem = new Card(data, '#element-template', userId, {cardId: data._id, ownerId: data.owner._id}, {
-  cardDel: (cardId) => {api.deleteCard(cardId)
-    .then(() => {
-      cardItem.removeCard();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  } 
-  });
-
+  const cardItem = new Card(data, '#element-template', userId, {cardId: data._id, ownerId: data.owner._id},
+  (cardId) => {
+    api.deleteCard(cardId)
+      .then(() => {cardItem.removeCard()})
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+  )
   return cardItem.makeCard();
 }
 

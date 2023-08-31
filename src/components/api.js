@@ -57,24 +57,24 @@ class Api {
     .then(this.checkResponse)  
   }
 
-  deleteCard(card) {
-    return fetch(`${this.baseUrl}/cards/${card._id}`, {
+  deleteCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this.headers
     })
     .then(this.checkResponse)
   }
 
-  putLike(card) {
-    return fetch(`${this.baseUrl}/cards/likes/${card._id}`, {
+  putLike(cardId) {
+    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: this.headers
     })
       .then(this.checkResponse)
   }
 
-  deleteLike(card) {
-    return fetch(`${this.baseUrl}cards/likes/${card._id}`, {
+  deleteLike(cardId) {
+    return fetch(`${this.baseUrl}cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this.headers
     })
