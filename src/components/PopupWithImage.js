@@ -7,11 +7,11 @@ export class PopupWhithImage extends Popup {
     this.popupImg = this.popupElement.querySelector('.element__popup-image');
   }
 
-  open(text, image) {
+  open(data) {
     super.open()
-    this.popupImgText.textContent = text;
-    this.popupImg.src = image;
-    this.popupImg.alt = text;
+    this.popupImgText.textContent = data.name;
+    this.popupImg.src = data.link;
+    this.popupImg.alt = data.name;
   }
 
 }

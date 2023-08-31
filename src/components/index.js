@@ -7,13 +7,13 @@ import { Section } from './Section';
 import { PopupWhithImage } from './PopupWithImage';
 import {renderingProfile} from "./utils";
 
-// const userId = "9f4abc1b7c1883549cb0c976";
+
 let userId;
 
 const renderCard = function (data) {
   const cardItem = new Card(data, '#element-template', userId, {cardId: data._id, ownerId: data.owner._id},
-  (text, image) => {
-    popupImage.open(text, image);
+  () => {
+    popupImage.open({name:data.name, link:data.link});
   },
   (cardId) => {
     api.deleteCard(cardId)
@@ -37,6 +37,7 @@ const renderCard = function (data) {
       })
     }
   )
+  
   return cardItem.makeCard();
 }
 

@@ -1,5 +1,3 @@
-
-
 export class Card {
   constructor(data, templateSelector, userId, ownerData, cardZoom, cardDelete, cardLike, cardRemoveLike) {
     this.card = data;
@@ -53,8 +51,7 @@ export class Card {
     }
   }
 
-  
-  
+   
   makeCard() {
     this.cardElement = this.getTemplate();
     this.elementImage = this.cardElement.querySelector('.element__image');
