@@ -22,14 +22,11 @@ class Api {
     .then(this.checkResponse)
   }
 
-  editProfile(name, about) {
+  editProfile(userData) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this.headers,
-      body: JSON.stringify({
-        name: name,
-        about: about
-      })
+      body: JSON.stringify({name: userData.name, about: userData.text})
     })
     .then(this.checkResponse)  
   }
@@ -84,7 +81,7 @@ class Api {
 }
 
 export const api = new Api ({
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-27/',
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-27',
   headers: {
     authorization: '37a7ba40-eb6a-4212-b4ef-3f20a061a16d',
     'Content-Type': 'application/json'

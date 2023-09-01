@@ -7,14 +7,14 @@ export class UserInfo {
 
     getUserInfo() {
       return {
-        getName: this.name.textContent,
-        getDescription: this.description.textContent
+        name: this.name.textContent,
+        text: this.description.textContent
       }
     }
 
-    editUserInfo({ getName, getDescription }) {
-        this.name.textContent = getName;
-        this.description.textContent = getDescription;
+    editUserInfo({ name, text }) {
+        this.name.textContent = name;
+        this.description.textContent = text;
     }
 
     editUserAvatar(avatarSrc) {

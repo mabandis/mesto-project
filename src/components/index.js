@@ -60,7 +60,7 @@ const userInfo = new UserInfo ({
 Promise.all([api.getProfile(), api.getInitialCard()])
   .then(([userData, data]) => {
     userId = userData._id;
-    userInfo.editUserInfo({ getName:userData.name, getDescription:userData.about });
+    userInfo.editUserInfo({ name:userData.name, text:userData.about });
     userInfo.editUserAvatar( userData.avatar )
     renderInitialCards.renderItems(data.reverse());
   })
@@ -69,10 +69,10 @@ Promise.all([api.getProfile(), api.getInitialCard()])
   })
 
 const popupEditProfile = new PopupWithForm ('#edit_popup', {
-  formSubmitFunction: ({userData}) => {popupEditProfile.changeButtonText(),
-     api.editProfile({name, about})
+  formSubmitFunction: (userData) => {popupEditProfile.changeButtonText();
+     api.editProfile(userData)
      .then((res) => {
-      userInfo.editUserInfo({ getName: res.name, getDescription: res.about });
+      userInfo.editUserInfo({ name: res.name, text: res.about });
       popupEditProfile.close()
      })
      .catch((err) => {
@@ -90,8 +90,8 @@ popupEditProfile.setPopupEventListeners()
 editProfileButton.addEventListener('click', function() {
   popupEditProfile.open();
   const currentUserInfo = userInfo.getUserInfo();
-  nameEdit.value = currentUserInfo.getName;
-  aboutEdit.value = currentUserInfo.getDescription;
+  nameEdit.value = currentUserInfo.name;
+  aboutEdit.value = currentUserInfo.text;
 });
 
 
