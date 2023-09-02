@@ -17,7 +17,7 @@ export class UserInfo {
         this.description.textContent = text;
     }
 
-    editUserAvatar(avatarSrc) {
-        this.avatar.src = avatarSrc;
+    editUserAvatar(link) {
+        this.avatar.src = link;
     }
 }

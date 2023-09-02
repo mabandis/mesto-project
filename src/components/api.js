@@ -31,12 +31,12 @@ class Api {
     .then(this.checkResponse)  
   }
 
-  editAvatar(avatarInput) {
+  editAvatar(userData) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
-        avatar: avatarInput.value
+        avatar: userData.link
       })
     })
     .then(this.checkResponse) 
@@ -71,7 +71,7 @@ class Api {
   }
 
   deleteLike(cardId) {
-    return fetch(`${this.baseUrl}cards/likes/${cardId}`, {
+    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this.headers
     })

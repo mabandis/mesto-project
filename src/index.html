@@ -68,11 +68,11 @@
             <form class="popup__form" id="add-form" name="add-form" novalidate>
                 <fieldset class="popup__fields">
                     <label class="popup__name-field" for="card-name-field">
-                        <input class="popup__field" id="card-name-field" name="name-field" type="text" placeholder="Название" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-Я \-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+                        <input class="popup__field" id="card-name-field" name="addname" type="text" placeholder="Название" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-Я \-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
                         <span class="card-name-field-error popup__field-error"></span>
                     </label>
                     <label for="card-link-field">
-                        <input class="popup__field" id="card-link-field" name="link-field" type="url" placeholder="Ссылка на картинку" required>
+                        <input class="popup__field" id="card-link-field" name="addlink" type="url" placeholder="Ссылка на картинку" required>
                         <span class="card-link-field-error popup__field-error"></span>
                     </label>
                     <button class="popup__submit popup__card-button" type="submit">Создать</button>
@@ -95,7 +95,7 @@
             <form class="popup__form" id="avatar-form" name="avatar-form" novalidate>
                 <fieldset class="popup__fields">
                     <label for="avatar-link-field" >
-                        <input class="popup__field" id="avatar-link-field" name="link-field" type="url" placeholder="Ссылка на картинку" required>
+                        <input class="popup__field" id="avatar-link-field" name="link" type="url" placeholder="Ссылка на картинку" required>
                         <span class="avatar-link-field-error popup__field-error"></span>
                     </label>
                     <button class="popup__submit popup__avatar-button" type="submit">Сохранить</button>
