@@ -1,12 +1,13 @@
 import '../pages/index.css';
-import { editProfileButton, nameEdit, aboutEdit, avatarProfileButton, addCardButton } from '../utils/constants';
-import {enableValidation} from "./validate";
-import { api } from './Api';
-import { Card } from "./Card";
-import { Section } from './Section';
-import { PopupWithImage } from './PopupWithImage';
-import { PopupWithForm } from './PopupWithForm'; 
-import { UserInfo } from './UserInfo';
+import { editProfileButton, nameEdit, aboutEdit, avatarProfileButton, addCardButton, enableValidationForm,
+profileForm, avatarForm, cardForm } from '../utils/constants';
+import { api } from '../components/Api';
+import { Card } from "../components/Card";
+import { Section } from '../components/Section';
+import { PopupWithImage } from '../components/PopupWithImage';
+import { PopupWithForm } from '../components/PopupWithForm'; 
+import { UserInfo } from '../components/UserInfo';
+import { FormValidate } from '../components/FormValidate';
 
 
 let userId;
@@ -103,7 +104,6 @@ const popupEditAvatar = new PopupWithForm('#avatar_popup', {
 popupEditAvatar.setPopupEventListeners();
 
 
-
 const popupCard = new PopupWithForm('#add_popup', {
   formSubmitFunction: (userData) => { popupCard.changeButtonText(); 
     api.postCard({ name: userData.addname, link: userData.addlink })
@@ -125,6 +125,7 @@ popupCard.setPopupEventListeners();
 
 editProfileButton.addEventListener('click', function() {
   popupEditProfile.open();
+  popupProfileValidate.reset();
   const currentUserInfo = userInfo.getUserInfo();
   nameEdit.value = currentUserInfo.name;
   aboutEdit.value = currentUserInfo.text;
@@ -132,13 +133,25 @@ editProfileButton.addEventListener('click', function() {
 
 avatarProfileButton.addEventListener('click', function () {
   popupEditAvatar.open();
+  popupAvatarValidate.reset();
 });
 
 addCardButton.addEventListener('click', function () {
   popupCard.open();
+  popupCardValidate.reset();
 });
 
+// Валидация
 
+const popupProfileValidate = new FormValidate (enableValidationForm, profileForm);
+popupProfileValidate.enableValidation();
+
+const popupAvatarValidate = new FormValidate (enableValidationForm, avatarForm);
+popupAvatarValidate.enableValidation();
+
+const popupCardValidate = new FormValidate (enableValidationForm, cardForm);
+popupCardValidate.enableValidation();
+ 
 
 
 
