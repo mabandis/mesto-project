@@ -1,14 +1,21 @@
 import '../pages/index.css';
 import { editProfileButton, nameEdit, aboutEdit, avatarProfileButton, addCardButton, enableValidationForm,
 profileForm, avatarForm, cardForm } from '../utils/constants';
-import { api } from '../components/Api';
-import { Card } from "../components/Card";
+import { Api } from '../components/Api';
+import { Card } from '../components/Card';
 import { Section } from '../components/Section';
 import { PopupWithImage } from '../components/PopupWithImage';
 import { PopupWithForm } from '../components/PopupWithForm'; 
 import { UserInfo } from '../components/UserInfo';
 import { FormValidate } from '../components/FormValidate';
 
+const api = new Api ({
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-27',
+  headers: {
+    authorization: '37a7ba40-eb6a-4212-b4ef-3f20a061a16d',
+    'Content-Type': 'application/json'
+  }
+})
 
 let userId;
 

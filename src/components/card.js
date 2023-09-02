@@ -1,84 +1,84 @@
 export class Card {
   constructor(data, templateSelector, userId, ownerData, cardZoom, cardDelete, cardLike, cardRemoveLike) {
-    this.card = data;
-    this.template = templateSelector;
-    this.userId = userId;
-    this.cardId = ownerData.cardId;
-    this.ownerId = ownerData.ownerId;
+    this._card = data;
+    this._template = templateSelector;
+    this._userId = userId;
+    this._cardId = ownerData.cardId;
+    this._ownerId = ownerData.ownerId;
 
-    this.cardImage = this.card.link;
-    this.cardName = this.card.name;
+    this._cardImage = this._card.link;
+    this._cardName = this._card.name;
 
-    this.cardOpened = cardZoom;
-    this.cardDelete = cardDelete;
-    this.setLike = cardLike;
-    this.removeLike = cardRemoveLike;
+    this._cardOpened = cardZoom;
+    this._cardDelete = cardDelete;
+    this._setLike = cardLike;
+    this._removeLike = cardRemoveLike;
   }
 
-  getTemplate() {
-    return document.querySelector(this.template).content.querySelector('.element').cloneNode(true);
+  _getTemplate() {
+    return document.querySelector(this._template).content.querySelector('.element').cloneNode(true);
   }
 
   removeCard() {
-    this.cardElement.remove();
-    this.cardElement = null;
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 
-  checkMyLike() {
-    return this.likes.find((userLike) => userLike._id === this.userId)
+  _checkMyLike() {
+    return this._likes.find((userLike) => userLike._id === this._userId)
   }
 
   renderLike(card) {
-    this.likes = card.likes;
-    if (this.likes === 0) {
+    this._likes = card.likes;
+    if (this._likes.length === 0) {
       this.elementLikeCounter.textContent = ''
     } else {
-      this.elementLikeCounter.textContent = this.likes.length;
+      this.elementLikeCounter.textContent = this._likes.length;
     }
 
-    if(this.checkMyLike()) {
-      this.elementLike.classList.add('element__like-icon-active');
+    if(this._checkMyLike()) {
+      this._elementLike.classList.add('element__like-icon-active');
     } else {
-      this.elementLike.classList.remove('element__like-icon-active');
+      this._elementLike.classList.remove('element__like-icon-active');
     }
   }
-
-  interactLike() {
-    if(this.checkMyLike()) {
-      this.removeLike(this.cardId);
+_
+  _interactLike() {
+    if(this._checkMyLike()) {
+      this._removeLike(this._cardId);
     } else {
-      this.setLike(this.cardId);
+      this._setLike(this._cardId);
     }
   }
 
    
   makeCard() {
-    this.cardElement = this.getTemplate();
-    this.elementImage = this.cardElement.querySelector('.element__image');
-    this.elementName = this.cardElement.querySelector('.element__title');
-    this.elementLike = this.cardElement.querySelector('.element__like-icon');
-    this.elementLikeCounter = this.cardElement.querySelector('.element__munber-of-likes');
-    this.elementDel = this.cardElement.querySelector('.element__delete-button');
+    this._cardElement = this._getTemplate();
+    this._elementImage = this._cardElement.querySelector('.element__image');
+    this._elementName = this._cardElement.querySelector('.element__title');
+    this._elementLike = this._cardElement.querySelector('.element__like-icon');
+    this.elementLikeCounter = this._cardElement.querySelector('.element__munber-of-likes');
+    this._elementDel = this._cardElement.querySelector('.element__delete-button');
     
-    this.elementImage.src = this.cardImage;
-    this.elementImage.alt = this.cardName;
-    this.elementName.textContent = this.cardName;
+    this._elementImage.src = this._cardImage;
+    this._elementImage.alt = this._cardName;
+    this._elementName.textContent = this._cardName;
     
-    this.renderLike(this.card);
+    this.renderLike(this._card);
 
-    this.setEventListeners();
+    this._setEventListeners();
     
-    return this.cardElement;
+    return this._cardElement;
     
   }
 
-  setEventListeners = () => {
-    this.elementLike.addEventListener('click', () => {this.interactLike()});
-    this.elementImage.addEventListener('click', () => {this.cardOpened(this.cardImage, this.cardName)});
-    if(this.userId === this.ownerId) {
-      this.elementDel.addEventListener('click', () => {this.cardDelete(this.cardId)});
+  _setEventListeners = () => {
+    this._elementLike.addEventListener('click', () => {this._interactLike()});
+    this._elementImage.addEventListener('click', () => {this._cardOpened(this._cardImage, this._cardName)});
+    if(this._userId === this._ownerId) {
+      this._elementDel.addEventListener('click', () => {this._cardDelete(this._cardId)});
     } else {
-      this.elementDel.remove()
+      this._elementDel.remove()
     }
    }
 

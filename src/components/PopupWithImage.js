@@ -3,15 +3,15 @@ import {Popup} from './Popup'
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this.popupImgText = this.popupElement.querySelector('.popup__img-title');
-    this.popupImg = this.popupElement.querySelector('.element__popup-image');
+    this._popupImgText = this._popupElement.querySelector('.popup__img-title');
+    this._popupImg = this._popupElement.querySelector('.element__popup-image');
   }
 
   open(data) {
     super.open()
-    this.popupImgText.textContent = data.name;
-    this.popupImg.src = data.link;
-    this.popupImg.alt = data.name;
+    this._popupImgText.textContent = data.name;
+    this._popupImg.src = data.link;
+    this._popupImg.alt = data.name;
   }
 
 }

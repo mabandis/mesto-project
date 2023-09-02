@@ -3,17 +3,17 @@ import {Popup} from './Popup';
 export class PopupWithForm extends Popup {
   constructor(popupSelector, {formSubmitFunction}) {
     super(popupSelector);
-    this.formSubmitFunction = formSubmitFunction;
-    this.popupForm = this.popupElement.querySelector('.popup__form');
-    this.inputPopupList = Array.from(this.popupForm.querySelectorAll('.popup__field'));
-    this.submitButton = this.popupForm.querySelector('.popup__submit');
-    this.submitButtonText = this.submitButton.textContent;
+    this._formSubmitFunction = formSubmitFunction;
+    this._popupForm = this._popupElement.querySelector('.popup__form');
+    this._inputPopupList = Array.from(this._popupForm.querySelectorAll('.popup__field'));
+    this._submitButton = this._popupForm.querySelector('.popup__submit');
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
     const formInput = {};
     
-    this.inputPopupList.forEach((inputElement) => {
+    this._inputPopupList.forEach((inputElement) => {
       formInput[inputElement.name] = inputElement.value;
     })
     
@@ -22,23 +22,23 @@ export class PopupWithForm extends Popup {
 
   setPopupEventListeners() {
     super.setPopupEventListeners();
-    this.popupForm.addEventListener('submit', (evt) => {
+    this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this.formSubmitFunction(this._getInputValues());
+      this._formSubmitFunction(this._getInputValues());
     })
   }
 
   changeButtonText() {
-    this.submitButton.textContent = 'Сохранение...';
+    this._submitButton.textContent = 'Сохранение...';
   }
   
   buttonDefaultText() {
-    this.submitButton.textContent = this.submitButtonText;
+    this._submitButton.textContent = this._submitButtonText;
   }
 
   close() {
     super.close();
-    this.popupForm.reset();
+    this._popupForm.reset();
   }
 
 }
