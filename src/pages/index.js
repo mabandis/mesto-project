@@ -158,6 +158,7 @@ popupAvatarValidate.enableValidation();
 
 const popupCardValidate = new FormValidate (enableValidationForm, cardForm);
 popupCardValidate.enableValidation();
+
  
 
 
