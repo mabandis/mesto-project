@@ -24,6 +24,6 @@
  Данная работа доработана и переделана по принципам *ООП программирования*.
  Работа в 5 спринте велась в коллаборации с [Родионом Баяновым](https://github.com/Blacket1), BlacketONE@yandex.ru
 
-Ссылка на сайт: https://github.com/mabandis/mesto-project.git
+Ссылка на сайт: (https://github.com/mabandis/mesto-project.git)
 
 
