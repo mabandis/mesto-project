@@ -21,6 +21,6 @@
  - Окно для редактирования профиля(реализовано с помощью javaScript);
  - Окно для увеличения изображения в карточке(реализовано с помощью javaScript);
 
-Ссылка на сайт: https://github.com/mabandis/mesto-project.git
+Ссылка на сайт: https://mabandis.github.io/mesto-project/
 Ссылка на макет: https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1&t=Nb5YukdTPAf1Ihok-0
 
